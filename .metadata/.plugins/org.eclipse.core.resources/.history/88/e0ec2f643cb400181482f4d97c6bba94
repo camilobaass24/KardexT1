@@ -1,0 +1,12 @@
+package com.pruebatecnica.ws.rest;
+
+public class GestionarCategoriaService {
+
+	
+	private List<Categoria> obtenerCategorias()
+	{
+		
+	}
+	
+	
+}

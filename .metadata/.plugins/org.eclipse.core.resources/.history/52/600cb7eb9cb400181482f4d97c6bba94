@@ -1,0 +1,20 @@
+package com.pruebatecnica.ws.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class TestMovimientos {
+	
+	public  TestMovimientos() {
+		GestionarMovimientosManager gestionarMovimientosManager= new GestionarMovimientosManagerImpl;
+	}
+
+	@Test
+	public void testRegistrarMovimientos() {
+		
+		
+		fail("Not yet implemented");
+	}
+
+}

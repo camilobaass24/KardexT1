@@ -1,0 +1,11 @@
+package com.pruebatecnica.ws.business.manager;
+
+import com.pruebatecnica.ws.business.vo.Producto;
+
+public interface GestionarProductoManager {
+	
+	
+	
+	boolean registrarProducto(Producto producto);
+
+}

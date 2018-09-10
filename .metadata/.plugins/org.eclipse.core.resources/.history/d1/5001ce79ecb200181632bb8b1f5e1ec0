@@ -1,0 +1,12 @@
+import com.pruebatecnica.ws.business.dao.conection.Conection;
+
+public class Main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Conection.conection();
+
+	}
+
+}

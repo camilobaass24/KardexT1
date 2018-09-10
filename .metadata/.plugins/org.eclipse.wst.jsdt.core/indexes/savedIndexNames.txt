@@ -1,0 +1,8 @@
+INDEX VERSION 1.3+C:\quipux\WEBSERVICE\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+2444193321.index
+1750510402.index
+3293280531.index
+3438697192.index
+3333547851.index
+1818919958.index
+2872336231.index

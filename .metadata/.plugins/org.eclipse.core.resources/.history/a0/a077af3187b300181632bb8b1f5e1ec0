@@ -1,0 +1,7 @@
+package com.pruebatecnica.ws.rest;
+
+
+@Path
+public class GestionarProductosService {
+
+}

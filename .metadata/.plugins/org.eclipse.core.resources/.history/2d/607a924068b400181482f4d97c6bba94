@@ -1,0 +1,5 @@
+package com.pruebatecnica.ws.business.manager.impl;
+
+public class GestionarUsuariosManagerImpl {
+
+}

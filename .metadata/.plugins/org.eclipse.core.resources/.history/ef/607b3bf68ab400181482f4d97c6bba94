@@ -1,0 +1,24 @@
+package com.pruebatecnica.ws.business.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+
+import com.pruebatecnica.ws.business.commons.Constantes.Utilidades;
+import com.pruebatecnica.ws.business.dao.AdministrarProductoDao;
+import com.pruebatecnica.ws.business.dao.conection.Conection;
+
+public class AdministrarProductoDaoJdbc implements AdministrarProductoDao {
+
+	
+
+	public AdministrarProductoDaoJdbc() {
+		//conection = Conection.conection();
+	}
+	
+	
+
+	
+
+}

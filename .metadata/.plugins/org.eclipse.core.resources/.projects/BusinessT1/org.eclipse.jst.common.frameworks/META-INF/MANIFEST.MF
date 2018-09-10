@@ -1,0 +1,6 @@
+Manifest-Version: 1.0
+Built-By: Usuario
+Class-Path: jasper.jar jasper-el.jar jsp-api.jar servlet-api.jar
+Build-Jdk: 1.8.0_131
+Created-By: Maven Integration for Eclipse
+

@@ -1,0 +1,29 @@
+package com.pruebatecnica.ws.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+import com.pruebatecnica.ws.business.manager.GestionarMovimientosManager;
+import com.pruebatecnica.ws.business.vo.Movimiento;
+
+public class TestMovimientos {
+	
+	public  TestMovimientos() {
+		GestionarMovimientosManager gestionarMovimientosManager= new GestionarMovimientosManagerImpl() {
+			
+			public boolean registrarMovmiento(Movimiento movmiento) {
+				// TODO Auto-generated method stub
+				return false;
+			}
+		};();
+	}
+
+	@Test
+	public void testRegistrarMovimientos() {
+		
+		
+		fail("Not yet implemented");
+	}
+
+}

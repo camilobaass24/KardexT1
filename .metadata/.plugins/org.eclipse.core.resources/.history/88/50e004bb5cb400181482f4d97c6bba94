@@ -1,0 +1,49 @@
+package com.pruebatecnica.ws.rest;
+
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import com.pruebatecnica.ws.business.dao.impl.GestionarCategoriaManagerImpl;
+import com.pruebatecnica.ws.business.manager.GestionarCategoriaManager;
+import com.pruebatecnica.ws.business.vo.Categoria;
+
+
+@Path("/Categorias")
+public class GestionarCategoriaService  {
+	
+	
+	
+	@GET
+	@Path("/obtenerCategorias")
+	@Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+	private List<Categoria> obtenerCategorias()
+	
+	{
+		GestionarCategoriaManager gestionarCategoriaManager= new GestionarCategoriaManagerImpl();
+		
+		return gestionarCategoriaManager.obtenerCategorias();
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+		
+	
+	
+	
+}

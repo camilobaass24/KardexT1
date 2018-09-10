@@ -1,0 +1,12 @@
+package com.pruebatecnica.ws.business.dao;
+
+import com.pruebatecnica.ws.business.vo.Producto;
+
+public interface GestionarProductoDao {
+	
+	
+	boolean registrarProducto(Producto producto) throws Exception;
+	
+	List<Producto> obtenerProductos();
+
+}

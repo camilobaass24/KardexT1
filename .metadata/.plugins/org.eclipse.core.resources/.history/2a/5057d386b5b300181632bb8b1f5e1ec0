@@ -1,0 +1,23 @@
+package com.pruebatecnica.ws.business.vo;
+
+public class GenericVO {
+	
+	private int codigoMensaje;
+	private String mensaje;
+	public int getCodigoMensaje() {
+		return codigoMensaje;
+	}
+	public void setCodigoMensaje(int codigoMensaje) {
+		this.codigoMensaje = codigoMensaje;
+	}
+	public String getMensaje() {
+		return mensaje;
+	}
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
+
+	
+	
+
+}

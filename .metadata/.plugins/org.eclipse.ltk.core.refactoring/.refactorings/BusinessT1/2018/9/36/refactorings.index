@@ -1,0 +1,37 @@
+1536349266753	Delete element
+1536349925712	Delete element
+1536350028958	Delete element
+1536350040558	Delete element
+1536350151888	Copy package
+1536350155189	Delete element
+1536350203168	Rename package 'com.pruebatecnica.ws.business.dao'
+1536350257009	Copy package
+1536350263237	Copy package
+1536350270696	Delete elements
+1536350446958	Rename type 'Producto'
+1536350588244	Move 'dao' to 'business'
+1536350602220	Move 'manager' to 'business'
+1536350607257	Move 'impl' to 'manager'
+1536350612764	Move 'vo' to 'business'
+1536350672956	Copy folder
+1536350830637	Rename type 'AdministrarProducto'
+1536354691442	Delete element
+1536358936128	Delete element
+1536360901267	Delete element
+1536370793457	Copy compilation unit
+1536370805781	Rename type 'AdministrarRoles'
+1536371234697	Copy compilation unit
+1536424499728	Rename compilation unit 'AdministrarProductoManager.java'
+1536424519547	Rename type 'AdministrarProductoManagerImpl'
+1536432552411	Move 'resources' to 'main'
+1536432601281	Delete element
+1536432674230	Delete elements
+1536434938760	Move 'spring.xml' to 'resources'
+1536434942584	Delete element
+1536445880330	Rename type 'GestionarCategoriaImpl'
+1536448885525	Delete element
+1536451188575	Delete element
+1536451195794	Delete element
+1536521749567	Move compilation unit
+1536536956460	Delete element
+1536536966203	Delete element

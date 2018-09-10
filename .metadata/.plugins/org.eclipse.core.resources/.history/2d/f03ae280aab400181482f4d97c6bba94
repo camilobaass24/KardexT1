@@ -1,0 +1,99 @@
+package com.pruebatecnica.ws.business.manager.impl;
+
+import java.util.List;
+import java.util.logging.Level;
+
+import com.pruebatecnica.ws.business.commons.Constantes.Utilidades;
+import com.pruebatecnica.ws.business.dao.GestionarMovimientosDao;
+import com.pruebatecnica.ws.business.dao.impl.GestionarMovimientosDaoJDbc;
+import com.pruebatecnica.ws.business.manager.GestionarMovimientosManager;
+import com.pruebatecnica.ws.business.vo.Movimiento;
+
+public class GestionarMovmientosManagerImpl implements GestionarMovimientosManager {
+
+	private GestionarMovimientosDao gestionarMovimientosDao;
+
+	public GestionarMovmientosManagerImpl() throws Exception {
+
+		gestionarMovimientosDao = new GestionarMovimientosDaoJDbc();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.pruebatecnica.ws.business.manager.GestionarMovimientosManager#
+	 * registrarMovmiento(com.pruebatecnica.ws.business.vo.Movimiento)
+	 */
+	public boolean registrarMovmiento(Movimiento movimiento) {
+
+		try {
+			calcularPrecioTotal(movimiento);
+
+			if (movimiento.getIdTipoMovimiento() == Utilidades.SALIDA) {
+				if (verificarExistencias(movimiento)) {
+					gestionarMovimientosDao.registrarMovimiento(movimiento);
+					return true;
+				}
+			} else {
+				gestionarMovimientosDao.registrarMovimiento(movimiento);
+				return true;
+			}
+			return false;
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			return false;
+		}
+	}
+
+	/**
+	 * Metodo que verifica si hay existencias del producto
+	 * 
+	 * @param movimiento
+	 * @return
+	 */
+	private boolean verificarExistencias(Movimiento movimiento) {
+
+		int totalProductosExistentes = 0;
+		try {
+			List<Movimiento> movimientosPorProducto = gestionarMovimientosDao.obtenerMovimientosPorProducto(movimiento);
+			for (Movimiento movimientoPorProducto : movimientosPorProducto) {
+				if (movimientoPorProducto.getIdTipoMovimiento() == Utilidades.ENTRADA) {
+					totalProductosExistentes += movimientoPorProducto.getCantidad();
+				} else if (movimientoPorProducto.getIdTipoMovimiento() == Utilidades.SALIDA) {
+
+					totalProductosExistentes -= movimientoPorProducto.getCantidad();
+				}
+			}
+			if (totalProductosExistentes > 0) {
+				return true;
+			}
+
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			return false;
+		}
+		return false;
+	}
+
+	/**
+	 * Metodo que calcula el valor total del movimiento
+	 * 
+	 * @param movimiento
+	 */
+	private void calcularPrecioTotal(Movimiento movimiento) {
+		int cantidad = 0;
+		int valorUnitario = 0;
+		int total = 0;
+		try {
+			if (movimiento != null) {
+				cantidad = movimiento.getCantidad();
+				valorUnitario = movimiento.getPrecioUnitario();
+				total = cantidad * valorUnitario;
+				movimiento.setTotal(total);
+			}
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+		}
+	}
+
+}

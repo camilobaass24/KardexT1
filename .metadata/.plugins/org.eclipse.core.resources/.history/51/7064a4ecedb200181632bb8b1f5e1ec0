@@ -1,0 +1,7 @@
+package com.pruebatecnica.ws.business.dao.impl;
+
+import com.pruebatecnica.ws.business.dao.AdministrarProductoDao;
+
+public class AdministrarProductoDaoJdbc implements AdministrarProductoDao{
+
+}

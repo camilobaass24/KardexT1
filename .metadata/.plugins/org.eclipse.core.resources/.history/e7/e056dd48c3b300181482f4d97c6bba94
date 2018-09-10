@@ -1,0 +1,25 @@
+package com.pruebatecnica.ws.business.manager.impl;
+
+import java.util.List;
+
+import com.pruebatecnica.ws.business.dao.AdministrarCategoriasDao;
+import com.pruebatecnica.ws.business.dao.impl.AdministrarCategoriasDaoJdbc;
+import com.pruebatecnica.ws.business.manager.GestionarCategoriaManager;
+import com.pruebatecnica.ws.business.vo.Categoria;
+
+public class GestionarCategoriaManagerImpl  implements GestionarCategoriaManager{
+	
+	
+	
+	public List<Categoria> obtenerCategorias()
+	{
+		AdministrarCategoriasDao administrarCategoriasDao= new AdministrarCategoriasDaoJdbc();
+		
+		try {
+			return administrarCategoriasDao.obtenerCategorias();
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+}

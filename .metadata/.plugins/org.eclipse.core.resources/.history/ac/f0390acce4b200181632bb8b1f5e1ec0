@@ -1,0 +1,8 @@
+package com.pruebatecnica.ws.business.dao.conection;
+
+public class Conection {
+	
+	
+	final static String DB_URL="jdbc:mysql://localhost:3306/kardex";
+
+}

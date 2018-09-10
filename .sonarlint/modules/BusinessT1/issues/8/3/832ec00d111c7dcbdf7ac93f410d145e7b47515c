@@ -1,0 +1,29 @@
+
+|squid:S2095ˆ"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(Å¥Íóÿÿÿÿÿ8”Ïı³Û,HÉRBLOCKERZBUG
+zsquid:S00112*"FDefine and throw a dedicated exception instead of using a generic one.(‰Æáe8İûÕ¶Û,HRMAJORZ
+CODE_SMELL
+{squid:S00112•"FDefine and throw a dedicated exception instead of using a generic one.(‰Æáe8ª…·Û,H©RMAJORZ
+CODE_SMELL
+ƒsquid:S2095d"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Œ¸°›ıÿÿÿÿ8ï¼¿´Û,HíRBLOCKERZBUG
+zsquid:S00112k"FDefine and throw a dedicated exception instead of using a generic one.(‰Æáe8ª…·Û,H§RMAJORZ
+CODE_SMELL
+ssquid:S1163R"=Refactor this code to not throw exceptions in finally blocks.(‰Æáe8ª…·Û,H°RCRITICALZ
+CODE_SMELL
+ƒsquid:S2095#"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Œ¸°›ıÿÿÿÿ8â­–³Û,H¾RBLOCKERZBUG
+`squid:S1143s"4Remove this throw statement from this finally block.(‰Æáe8ª…·Û,H­RMAJORZBUG
+zsquid:S001122"FDefine and throw a dedicated exception instead of using a generic one.(‰Æáe8İûÕ¶Û,HRMAJORZ
+CODE_SMELL
+`squid:S1143R"4Remove this throw statement from this finally block.(‰Æáe8ª…·Û,H¬RMAJORZBUG
+ssquid:S11632"=Refactor this code to not throw exceptions in finally blocks.(‰Æáe8ª…·Û,H¯RCRITICALZ
+CODE_SMELL
+}squid:S2095E"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ñ÷ğW8›ö´Û,HşRBLOCKERZBUG
+ssquid:S1163s"=Refactor this code to not throw exceptions in finally blocks.(‰Æáe8ª…·Û,H±RCRITICALZ
+CODE_SMELL
+`squid:S11432"4Remove this throw statement from this finally block.(‰Æáe8ª…·Û,H«RMAJORZBUG
+zsquid:S00112J"FDefine and throw a dedicated exception instead of using a generic one.(‰Æáe8İûÕ¶Û,HRMAJORZ
+CODE_SMELL
+zsquid:S00112s"FDefine and throw a dedicated exception instead of using a generic one.(‰Æáe8ª…·Û,H¨RMAJORZ
+CODE_SMELL
+zsquid:S00112R"FDefine and throw a dedicated exception instead of using a generic one.(‰Æáe8İûÕ¶Û,HRMAJORZ
+CODE_SMELL
+squid:S2095‡"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¹¬øÀ8”Ïı³Û,HÊRBLOCKERZBUG

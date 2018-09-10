@@ -1,0 +1,36 @@
+package com.pruebatecnica.ws.business.manager.impl;
+
+import com.pruebatecnica.ws.business.dao.GestionarMovimientosDao;
+import com.pruebatecnica.ws.business.dao.impl.GestionarMovimientosDaoJDbc;
+import com.pruebatecnica.ws.business.manager.GestionarMovimientosManager;
+import com.pruebatecnica.ws.business.vo.Movimiento;
+
+public class GestionarMovmientosManagerImpl implements GestionarMovimientosManager {
+
+	GestionarMovimientosDao gestionarMovimientosDao;
+	public GestionarMovmientosManagerImpl() throws Exception{
+		
+		 gestionarMovimientosDao=new GestionarMovimientosDaoJDbc();
+	}
+	
+	
+	public boolean registrarMovmiento(Movimiento movimiento) {
+		
+		try{
+			gestionarMovimientosDao.registrarMovimiento(movimiento);
+			return true;
+			
+		}catch (Exception e) {
+			return false;
+		}
+		
+		
+		
+		
+		return false;
+	}
+	
+	
+	
+
+}

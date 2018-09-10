@@ -1,0 +1,32 @@
+package com.pruebatecnica.ws.test;
+
+import static org.junit.Assert.*;
+
+import java.util.logging.Level;
+
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.pruebatecnica.ws.business.commons.Constantes.Utilidades;
+import com.pruebatecnica.ws.business.dao.AdministrarProductoDao;
+
+public class TestCategoria {
+
+	@Autowired
+	AdministrarProductoDao administarProductoDao;
+	
+	@Test
+	public void test() {
+		
+		try{
+			administarProductoDao.insertarCategoria("Vaso", Utilidades.SI);
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			Utilidades.logger.log(Level.INFO, e.toString());
+		}
+		
+		
+	}
+
+}

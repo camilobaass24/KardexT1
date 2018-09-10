@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/util 
+           http://www.springframework.org/schema/util/spring-util.xsd">
+
+	<!-- Imports the configurations of the different infrastructure systems 
+		of the application -->
+	<import resource="propertyFileConfigurer.xml" />
+	<import resource="applicationContext-beans.xml" />
+	<import resource="webmvc-config.xml" />
+	<import resource="webflow-config.xml" />
+	<import resource="utils-constants.xml" />
+	<import resource="spring-security-config-CAS.xml" />
+	<import resource="aop-config.xml" />
+	<import resource="memcached.xml" />
+	<import resource="applicationContext-datasource.xml" />
+	<import resource="web-application-quartz.xml" />
+
+	<!-- It allow us to use @Autowire, @Required, @Qualifier and JSR-250 annotations. -->
+	<!-- 1 @Required -->
+	<!-- The @Required annotation applies to bean property setter methods. -->
+	<!-- 2 @Autowired -->
+	<!-- The @Autowired annotation can apply to bean property setter methods, 
+		non-setter methods, constructor and properties. -->
+	<!-- 3 @Qualifier -->
+	<!-- The @Qualifier annotation along with @Autowired can be used to remove 
+		the confusion by specifiying which exact bean will be wired. -->
+	<!-- 4 JSR-250 Annotations -->
+	<!-- Spring supports JSR-250 based annotations which include @Resource, 
+		@PostConstruct and @PreDestroy annotations. -->
+	<context:annotation-config />
+
+	<!-- Enable auto scanning feature in Spring. It allow scans the classpath 
+		for annotated components that will be auto-registered as Spring beans. By 
+		default, the Spring-provided @Component, @Repository, @Service, and @Controller 
+		stereotypes will be detected -->
+	<context:component-scan base-package="com.pruebatecnica.ws" />
+
+</beans>

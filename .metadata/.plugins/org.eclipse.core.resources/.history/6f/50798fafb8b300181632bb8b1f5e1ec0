@@ -1,0 +1,46 @@
+package com.pruebatecnica.ws.rest;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import com.pruebatecnica.ws.business.manager.GestionarCategoriaManager;
+import com.pruebatecnica.ws.business.manager.impl.GestionarCategoriaManagerImpl;
+import com.pruebatecnica.ws.business.vo.Categoria;
+import com.pruebatecnica.ws.business.vo.GenericVO;
+
+@Path("/PruebaTecnica")
+public class GestionarCategoriasService<E> {
+	
+	
+	
+	@POST 
+	@Path("/obtenerCategorias")
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Produces ({MediaType.APPLICATION_JSON})
+	private GenericVO obtenerCategorias()
+	{
+		GestionarCategoriaManager gestionarCategoriaManager= new GestionarCategoriaManagerImpl();
+		List <Categoria> categorias=gestionarCategoriaManager.obtenerCategorias();
+		
+		GenericVO<E> genericVO= new GenericVO<>();
+		
+		List <E>listaGenerica= new ArrayList<>();
+		
+		for(Categoria categoria:categorias)
+		{
+			listaGenerica.add((E) categoria);
+			
+		}
+		
+		genericVO.setListaGenerica(listaGenerica);
+		
+		return genericVO;
+	}
+
+}

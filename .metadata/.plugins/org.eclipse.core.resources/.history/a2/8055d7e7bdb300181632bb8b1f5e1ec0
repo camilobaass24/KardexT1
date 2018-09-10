@@ -1,0 +1,33 @@
+package com.pruebatecnica.ws.business.vo;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class GenericVO {
+	
+	private int codigoMensaje;
+	private String mensaje;
+	private List<E>listaGenerica;
+	public int getCodigoMensaje() {
+		return codigoMensaje;
+	}
+	public void setCodigoMensaje(int codigoMensaje) {
+		this.codigoMensaje = codigoMensaje;
+	}
+	public String getMensaje() {
+		return mensaje;
+	}
+	public void setMensaje(String mensaje) {
+		this.mensaje = mensaje;
+	}
+	public List<E> getListaGenerica() {
+		return listaGenerica;
+	}
+	public void setListaGenerica(List<E> listaGenerica) {
+		this.listaGenerica = listaGenerica;
+	}
+
+	
+	
+
+}

@@ -1,0 +1,54 @@
+package com.pruebatecnica.ws.business.dao.conection;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+public class Conection {
+
+	
+	
+	 private Conection() {
+		    throw new IllegalStateException("Utility class");
+		  }
+
+	/**
+	 * Se gestiona la conexion a base de datos
+	 * @return
+	 */
+	public static Connection conection() {
+		Connection con;
+
+		try {
+
+			Class.forName("com.mysql.jdbc.Driver");
+			con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+			return con;
+
+		} catch (Exception e) {
+			logger.log(Level.INFO, e.toString());
+			return null;
+
+		}
+
+	}
+
+	/**
+	 * Se gestionan las sentencias sql
+	 * @return
+	 */
+	public static Statement st() {
+		Statement stmt;
+		try {
+			stmt = Conection.conection().createStatement();
+			return stmt;
+		} catch (Exception e) {
+			logger.log(Level.INFO, e.toString());
+			return null;
+		}
+
+	}
+
+}

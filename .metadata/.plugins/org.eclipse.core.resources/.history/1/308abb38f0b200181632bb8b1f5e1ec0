@@ -1,0 +1,17 @@
+package com.pruebatecnica.ws.business.commons;
+
+import java.util.logging.Logger;
+
+import com.pruebatecnica.ws.business.dao.conection.Conection;
+
+public class Constantes {
+
+	
+	public static class Utilidades {
+		static Logger logger = Logger.getLogger(Conection.class.getName());
+		static final  String DB_URL = "jdbc:mysql://localhost:3306/kardex";
+		static final  String DB_USER = "root";
+		static final  String DB_PASSWORD = "";
+	}
+	
+}

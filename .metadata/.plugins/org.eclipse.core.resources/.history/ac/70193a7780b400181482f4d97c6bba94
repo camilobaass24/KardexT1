@@ -1,0 +1,18 @@
+package com.pruebatecnica.ws.business.vo;
+
+import com.pruebatecnica.ws.business.dao.GestionarInventarioDao;
+
+public class Movimiento implements GestionarInventarioDao {
+
+	public boolean registrarMovimiento() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	
+	
+	
+	
+
+}

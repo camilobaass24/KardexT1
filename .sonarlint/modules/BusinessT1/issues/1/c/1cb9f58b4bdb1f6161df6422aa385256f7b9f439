@@ -1,0 +1,7 @@
+
+vsquid:UselessImportCheck"5Remove this unused import 'java.util.logging.Logger'.(ƒ¥óš8¤¿ä±Û,HøRMINORZ
+CODE_SMELL
+{squid:S00112"FDefine and throw a dedicated exception instead of using a generic one.(ýÒ’Ï8ãýü¶Û,HŸRMAJORZ
+CODE_SMELL
+zsquid:S00112""FDefine and throw a dedicated exception instead of using a generic one.(‰Æáe8ãýü¶Û,HžRMAJORZ
+CODE_SMELL

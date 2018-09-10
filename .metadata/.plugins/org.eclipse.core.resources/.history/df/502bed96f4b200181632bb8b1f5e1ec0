@@ -1,0 +1,47 @@
+package com.pruebatecnica.ws.business.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+
+import com.pruebatecnica.ws.business.commons.Constantes.Utilidades;
+import com.pruebatecnica.ws.business.dao.AdministrarProductoDao;
+import com.pruebatecnica.ws.business.dao.conection.Conection;
+
+public class AdministrarProductoDaoJdbc implements AdministrarProductoDao {
+
+	private Connection conection;
+
+	private AdministrarProductoDaoJdbc() {
+		conection = Conection.conection();
+	}
+
+	public boolean insertarCategoria(String nombre, String estado) {
+
+		StringBuilder insertCategoria = new StringBuilder();
+		insertCategoria.append("insert into categorias (nombre_categoria,activo_categoria) ");
+		insertCategoria.append("values (?,?)");
+
+		try {
+			PreparedStatement preparedStatement = conection.prepareStatement(insertCategoria.toString());
+			preparedStatement.setString(1, nombre);
+			preparedStatement.setString(2, estado);
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			return false;
+		} finally {
+			try {
+				if (!conection.isClosed()) {
+					conection.close();
+				}
+			} catch (SQLException e) {
+				Utilidades.logger.log(Level.INFO, e.toString());
+			}
+		}
+
+	}
+
+}

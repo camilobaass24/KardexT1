@@ -1,0 +1,18 @@
+package com.pruebatecnica.ws.business.vo;
+
+import java.util.Date;
+
+public class Movimiento  {
+
+	private int idMovimiento;
+	private String detalleMovimiento;
+	private Date fechaMovimiento;
+	private int idTipoMovimiento;
+	private int idProductoMovimiento;
+	private int precioUnitario;
+	
+		
+	
+
+	
+}

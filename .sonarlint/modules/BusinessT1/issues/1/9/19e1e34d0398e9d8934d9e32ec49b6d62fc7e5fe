@@ -1,0 +1,11 @@
+
+ssquid:UselessImportCheck"2Remove this unused import 'java.sql.SQLException'.(ÛïÆŸ8Ø•³Û,H²RMINORZ
+CODE_SMELL
+}squid:UselessImportCheck"7Remove this unused import 'java.sql.PreparedStatement'.(òÄ™ƒÿÿÿÿÿ8Ø•³Û,H´RMINORZ
+CODE_SMELL
+squid:UselessImportCheck"XRemove this unused import 'com.pruebatecnica.ws.business.commons.Constantes.Utilidades'.(Æ«é‡ûÿÿÿÿ8Ø•³Û,H³RMINORZ
+CODE_SMELL
+usquid:UselessImportCheck"4Remove this unused import 'java.util.logging.Level'.(…µÛ¶8Ø•³Û,HµRMINORZ
+CODE_SMELL
+„squid:CommentedOutCodeLine"<This block of commented-out lines of code should be removed.(¼¡œòıÿÿÿÿ8÷„ş¶Û,H¦RMAJORZ
+CODE_SMELL

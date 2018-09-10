@@ -1,0 +1,30 @@
+package com.pruebatecnica.ws.business.dao.impl;
+
+import java.sql.PreparedStatement;
+
+import com.pruebatecnica.ws.business.dao.AdministrarProductoDao;
+import com.pruebatecnica.ws.business.dao.conection.Conection;
+
+public class AdministrarProductoDaoJdbc implements AdministrarProductoDao {
+
+	public boolean insertarCategoria(String nombre, String estado) {
+
+		StringBuilder insertCategoria = new StringBuilder();
+		insertCategoria.append("insert into categorias (nombre_categoria,activo_categoria) ");
+		insertCategoria.append("values (?,?)");
+
+		try {
+			PreparedStatement preparedStatement = Conection.conection().prepareStatement(insertCategoria.toString());
+			preparedStatement.setString(1, "Test");
+			preparedStatement.setString(2, "Test2");
+			preparedStatement.setString(3, "Test3");
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (Exception e) {
+
+			return false;
+		}
+
+	}
+
+}

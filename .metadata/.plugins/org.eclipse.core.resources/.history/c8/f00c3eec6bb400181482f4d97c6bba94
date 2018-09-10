@@ -1,0 +1,45 @@
+package com.pruebatecnica.ws.rest;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import com.pruebatecnica.ws.business.manager.GestionarUsuariosManager;
+import com.pruebatecnica.ws.business.manager.impl.GestionarUsuariosManagerImpl;
+import com.pruebatecnica.ws.business.vo.Usuario;
+
+@Path("/Usuarios")
+public class GestionarUsuariosService {
+	
+	
+	
+	private GestionarUsuariosManager gestionarUsuariosManager;
+	/**
+	 * Constructr de la clase
+	 * @throws Exception 
+	 */
+	public GestionarUsuariosService() throws Exception {
+		gestionarUsuariosManager = new GestionarUsuariosManagerImpl();
+	}
+	
+	/**
+	 * Metodo que resgitra una categoria
+	 * 
+	 * @param categoria
+	 * @return
+	 */
+	@POST
+	@Path("/resgistrarUsuario")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
+	public boolean registrarCategoria(Usuario usuario) {
+		try {
+			gestionarUsuariosManager.registrarUsuario(usuario);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+}

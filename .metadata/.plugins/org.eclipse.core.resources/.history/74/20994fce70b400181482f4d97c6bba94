@@ -1,0 +1,30 @@
+package com.pruebatecnica.ws.business.manager.impl;
+
+
+import org.springframework.stereotype.Service;
+
+import com.pruebatecnica.ws.business.dao.GestionarProductoDao;
+import com.pruebatecnica.ws.business.dao.impl.GestionarProductoDaoJdbc;
+import com.pruebatecnica.ws.business.manager.GestionarProductoManager;
+import com.pruebatecnica.ws.business.vo.Producto;
+
+
+
+public class GestionarProductoManagerImpl implements GestionarProductoManager {
+
+	
+
+	public boolean registrarProducto(Producto producto) {
+		// TODO Auto-generated method stub
+		try {
+			
+			GestionarProductoDao gestionarProductoDao= new GestionarProductoDaoJdbc();
+			gestionarProductoDao.registrarProducto(producto);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+
+	}
+
+}

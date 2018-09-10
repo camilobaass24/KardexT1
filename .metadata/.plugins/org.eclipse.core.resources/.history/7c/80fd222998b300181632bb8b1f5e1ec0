@@ -1,0 +1,57 @@
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+	<!-- IMPORTACION DE CONSTANTES COMUNES UTILES EN TODOS LOS PROYECTOS -->
+	<beans:import resource="utils-constants-base.xml" />
+
+	<!-- AccionCrud -->
+	<util:constant id="CAMPO_VISUAL_OG" static-field="co.com.quipux.core.model.Constantes.TipoAspectoEvaluar.CAMPO_VISUAL_OG" />
+
+	<!--TipoArchivoCarga -->
+	<util:constant id="CARGA_VEHICULO" static-field="co.com.quipux.core.model.Constantes.TipoArchivoCarga.CARGA_VEHICULO" />
+	<util:constant id="CARGA_DOCUMENTO_IDENTIFICACION" static-field="co.com.quipux.core.model.Constantes.TipoArchivoCarga.CARGA_DOCUMENTO_IDENTIFICACION" />
+
+	<!-- ExpresionesRegulares -->
+	<util:constant id="RE_ALFANUMERICOS_CEROMUCHOS" static-field="co.com.quipux.core.model.Constantes.ExpresionesRegulares.RE_ALFANUMERICOS_CEROMUCHOS" />
+
+	<!-- COnsulta localizar vehiculos -->
+	<util:constant id="CRIT_LOCALIZACION_RECIENTE" static-field="co.com.quipux.core.model.Constantes.CriteriosBusqueda.CRIT_LOCALIZACION_RECIENTE" />
+	<util:constant id="CRITERIO_DIA" static-field="co.com.quipux.core.model.Constantes.CriteriosBusqueda.CRITERIO_DIA" />
+	<util:constant id="CRITERIO_FECHA" static-field="co.com.quipux.core.model.Constantes.CriteriosBusqueda.CRITERIO_FECHA" />
+	<util:constant id="TIPO_ARCHIVO_VEHICULO" static-field="co.com.quipux.core.model.Constantes.TipoArchivo.VEHICULO" />
+	<util:constant id="TIPO_ARCHIVO_IDENTIFICACION" static-field="co.com.quipux.core.model.Constantes.TipoArchivo.DOCUMENTO_IDENTIFICACION" />
+	<util:constant id="CRITERIO_PLACA" static-field="co.com.quipux.core.model.Constantes.CriteriosBusqueda.CRITERIO_PLACA" />
+	<util:constant id="CRITERIO_ESTADO" static-field="co.com.quipux.core.model.Constantes.CriteriosBusqueda.CRITERIO_ESTADO" />
+	<util:constant id="CRITERIO_TODOS" static-field="co.com.quipux.core.model.Constantes.CriteriosBusqueda.CRITERIO_TODOS" />
+	<util:constant id="CRITERIO_IDENTIFICACION" static-field="co.com.quipux.core.model.Constantes.CriteriosBusqueda.CRITERIO_IDENTIFICACION" />
+	<util:constant id="TIPO_PROCESO_BUSQUEDA.INACTIVO" static-field="co.com.quipux.core.model.Constantes.TipoProcesoBusqueda.INACTIVO" />
+	<util:constant id="TIPO_PROCESO_BUSQUEDA_PENDIENTE" static-field="co.com.quipux.core.model.Constantes.TipoProcesoBusqueda.PENDIENTE_BUSQUEDA" />
+	<util:constant id="TIPO_PROCESO_BUSQUEDA_BUSQUEDA" static-field="co.com.quipux.core.model.Constantes.TipoProcesoBusqueda.BUSQUEDA" />
+	<util:constant id="TIPO_PROCESO_BUSQUEDA_LOCALIZADO" static-field="co.com.quipux.core.model.Constantes.TipoProcesoBusqueda.LOCALIZADO" />
+	<util:constant id="TIPO_PROCESO_BUSQUEDA_NOTIFICADO" static-field="co.com.quipux.core.model.Constantes.TipoProcesoBusqueda.INCIDENTE_NOTIFICADO" />
+	<util:constant id="TIPO_PROCESO_BUSQUEDA_RECUPERADO" static-field="co.com.quipux.core.model.Constantes.TipoProcesoBusqueda.RECUPERADO" />
+	<util:constant id="TIPO_PROCESO_BUSQUEDA_LIQUIDADO" static-field="co.com.quipux.core.model.Constantes.TipoProcesoBusqueda.LIQUIDADO" />
+	<util:constant id="TIPO_PROCESO_BUSQUEDA_PAGADO" static-field="co.com.quipux.core.model.Constantes.TipoProcesoBusqueda.PAGADO" />
+	<util:constant id="CODIGO_INFRACCION_CAM" static-field="co.com.quipux.core.model.Constantes.CamposHistoricoVehiculo.CODIGO_INFRACCION" />
+	
+	<util:constant id="CB_CRITERIO_USUARIO" static-field="co.com.quipux.core.model.Constantes.CriteriosBusqueda.CRITERIO_USUARIO" />
+	<util:constant id="CB_CRITERIO_CAMARA" static-field="co.com.quipux.core.model.Constantes.CriteriosBusqueda.CRITERIO_CAMARA" />
+	<util:constant id="CB_CRITERIO_EVENTO" static-field="co.com.quipux.core.model.Constantes.CriteriosBusqueda.CRITERIO_EVENTO" />
+	<util:constant id="CB_LIQUIDADO" static-field="co.com.quipux.core.model.Constantes.TipoProcesoBusqueda.LIQUIDADO" />
+	<util:constant id="CB_PAGADO" static-field="co.com.quipux.core.model.Constantes.TipoProcesoBusqueda.PAGADO" />
+	<util:constant id="CB_INMOVILIZADO" static-field="co.com.quipux.core.model.Constantes.TipoProcesoBusqueda.INMOVILIZADO" />
+	<util:constant id="CB_NOTIFICADO" static-field="co.com.quipux.core.model.Constantes.TipoProcesoBusqueda.NOTIFICADO" />
+	<util:constant id="CB_PENDIENTE" static-field="co.com.quipux.core.model.Constantes.TipoProcesoBusqueda.PENDIENTE_BUSQUEDA" />
+	
+	<util:constant id="TG_LIQUIDADO" static-field="co.com.quipux.core.model.Constantes.TipoGestion.LIQUIDADO" />
+	<util:constant id="TG_PAGADO" static-field="co.com.quipux.core.model.Constantes.TipoGestion.PAGADO" />
+	<util:constant id="TG_NOTIFICADO" static-field="co.com.quipux.core.model.Constantes.TipoGestion.NOTIFICADO" />
+	<util:constant id="TG_INMOVILIZADO" static-field="co.com.quipux.core.model.Constantes.TipoGestion.INMOVILIZADO" />
+	
+	
+</beans:beans>

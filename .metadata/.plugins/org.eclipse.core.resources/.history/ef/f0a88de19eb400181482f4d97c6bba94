@@ -1,0 +1,36 @@
+package com.pruebatecnica.ws.business.manager.impl;
+
+import java.util.logging.Level;
+
+import com.pruebatecnica.ws.business.commons.Constantes.Utilidades;
+import com.pruebatecnica.ws.business.dao.GestionarMovimientosDao;
+import com.pruebatecnica.ws.business.dao.impl.GestionarMovimientosDaoJDbc;
+import com.pruebatecnica.ws.business.manager.GestionarMovimientosManager;
+import com.pruebatecnica.ws.business.vo.Movimiento;
+
+public class GestionarMovmientosManagerImpl implements GestionarMovimientosManager {
+
+	GestionarMovimientosDao gestionarMovimientosDao;
+
+	public GestionarMovmientosManagerImpl() throws Exception {
+
+		gestionarMovimientosDao = new GestionarMovimientosDaoJDbc();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.pruebatecnica.ws.business.manager.GestionarMovimientosManager#registrarMovmiento(com.pruebatecnica.ws.business.vo.Movimiento)
+	 */
+	public boolean registrarMovmiento(Movimiento movimiento) {
+
+		try {
+			gestionarMovimientosDao.registrarMovimiento(movimiento);
+			return true;
+
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			return false;
+		}
+	}
+
+}

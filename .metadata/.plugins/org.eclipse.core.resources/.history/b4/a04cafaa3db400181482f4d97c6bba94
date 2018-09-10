@@ -1,0 +1,19 @@
+package com.pruebatecnica.ws.rest;
+
+import java.util.List;
+
+import com.pruebatecnica.ws.business.dao.AdministrarCategoriasDao;
+import com.pruebatecnica.ws.business.dao.impl.AdministrarCategoriasDaoJdbc;
+import com.pruebatecnica.ws.business.dao.impl.GestionarCategoriaManagerImpl;
+import com.pruebatecnica.ws.business.manager.GestionarCategoriaManager;
+import com.pruebatecnica.ws.business.vo.Categoria;
+
+public class GestionarCategoriaService  {
+
+	
+	
+		
+	}
+	
+	
+}

@@ -1,0 +1,159 @@
+package com.pruebatecnica.ws.business.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+
+import org.springframework.stereotype.Repository;
+
+import com.pruebatecnica.ws.business.commons.Constantes.Utilidades;
+import com.pruebatecnica.ws.business.dao.AdministrarCategoriasDao;
+import com.pruebatecnica.ws.business.dao.AdministrarRolesDao;
+import com.pruebatecnica.ws.business.dao.conection.Conection;
+import com.pruebatecnica.ws.business.vo.Categoria;
+import com.pruebatecnica.ws.business.vo.Rol;
+
+@Repository
+public class AdministrarRolesDaoJdbc implements AdministrarRolesDao {
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.pruebatecnica.ws.business.dao.AdministrarCategoriasDao#
+	 * actualizarCategoria(int)
+	 */
+	public boolean actualizarRol(int idRol, String nombreRol) throws Exception {
+
+		Connection conection = Conection.conection();
+		StringBuilder actualizarRol = new StringBuilder();
+		actualizarRol.append("update roles  set nombre_rol=? ");
+		actualizarRol.append("where id_rol=?");
+
+		try {
+			PreparedStatement preparedStatement = conection.prepareStatement(actualizarRol.toString());
+			preparedStatement.setString(1, nombreRol);
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			throw new Exception();
+		} finally {
+			try {
+				if (!conection.isClosed()) {
+					conection.close();
+				}
+			} catch (SQLException e) {
+				Utilidades.logger.log(Level.INFO, e.toString());
+			}
+		}
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.pruebatecnica.ws.business.dao.AdministrarCategoriasDao#
+	 * borrarCategoria(int)
+	 */
+	public boolean borrarRol(int idCategoria) throws Exception {
+		Connection conection = Conection.conection();
+		StringBuilder deleteRol = new StringBuilder();
+		deleteRol.append("delete from roles ");
+		deleteRol.append("where id_rol=?");
+
+		try {
+			PreparedStatement preparedStatement = conection.prepareStatement(deleteRol.toString());
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			throw new Exception();
+		} finally {
+			try {
+				if (!conection.isClosed()) {
+					conection.close();
+				}
+			} catch (SQLException e) {
+				Utilidades.logger.log(Level.INFO, e.toString());
+			}
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.pruebatecnica.ws.business.dao.AdministrarCategoriasDao#
+	 * insertarCategoria(java.lang.String, java.lang.String)
+	 */
+	public boolean insertarRol(String nombre) throws Exception {
+		Connection conection = Conection.conection();
+		StringBuilder insertRol = new StringBuilder();
+		insertRol.append("insert into roles (nombre_rol) ");
+		insertRol.append("values (?)");
+
+		try {
+			PreparedStatement preparedStatement = conection.prepareStatement(insertRol.toString());
+			preparedStatement.setString(1, nombre);
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			throw new Exception();
+		} finally {
+			try {
+				if (!conection.isClosed()) {
+					conection.close();
+				}
+			} catch (SQLException e) {
+				Utilidades.logger.log(Level.INFO, e.toString());
+			}
+		}
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.pruebatecnica.ws.business.dao.AdministrarCategoriasDao#
+	 * obtenerCategorias()
+	 */
+	public List<Rol> obtenerRoles() throws Exception {
+
+		Connection conection = Conection.conection();
+		ResultSet resultSet = null;
+		List<Rol> listaRoles = new ArrayList<Rol>();
+		StringBuilder obtenerCategorias = new StringBuilder();
+		obtenerCategorias.append("select  id_categoria, nombre_categoria, activo_categoria from categorias");
+		try {
+			PreparedStatement preparedStatement = conection.prepareStatement(obtenerCategorias.toString());
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				final Categoria categoria = new Categoria();
+				categoria.setIdCategoria(resultSet.getInt("id_categoria"));
+				categoria.setNombre(resultSet.getString("nombre_categoria"));
+				categoria.setActivo(resultSet.getString("activo_categoria"));
+				listaCategorias.add(categoria);
+			}
+
+			return listaCategorias;
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			throw new Exception();
+		} finally {
+			try {
+				if (!conection.isClosed()) {
+					conection.close();
+				}
+			} catch (SQLException e) {
+				Utilidades.logger.log(Level.INFO, e.toString());
+			}
+		}
+	}
+
+	
+}

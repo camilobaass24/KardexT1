@@ -1,0 +1,8 @@
+package com.pruebatecnica.ws.rest;
+
+import javax.ws.rs.Path;
+
+@Path("/PruebaTecnica")
+public class GestionarProductosService {
+
+}

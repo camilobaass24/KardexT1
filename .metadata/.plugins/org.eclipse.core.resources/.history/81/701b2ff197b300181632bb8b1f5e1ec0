@@ -1,0 +1,24 @@
+<beans:beans xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.1.xsd
+	http://www.springframework.org/schema/util
+	http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+
+	<!-- Activo -->
+	<util:constant id="SI" static-field="co.com.quipux.core.model.Constantes.Activo.SI" />
+	<util:constant id="NO" static-field="co.com.quipux.core.model.Constantes.Activo.NO" />
+
+	<!-- TipoProcesoSistema -->
+	<util:constant id="USUARIOS" static-field="co.com.quipux.core.model.Constantes.TipoProcesoSistema.USUARIOS" />
+	<!-- TipoRecursoSistema -->
+	<util:constant id="ROLE_MODULO_SMAS" static-field="co.com.quipux.core.model.Constantes.TipoRecursoSistema.ROLE_MODULO_SMAS" />
+	<util:constant id="ROLE_MODULO_ADMINISTRACION" static-field="co.com.quipux.core.model.Constantes.TipoRecursoSistema.ROLE_MODULO_ADMINISTRACION" />
+	<util:constant id="ROLE_MODULO_SEGURIDAD" static-field="co.com.quipux.core.model.Constantes.TipoRecursoSistema.ROLE_MODULO_SEGURIDAD" />
+	<!-- TipoModulo -->
+	<util:constant id="TIPO_MODULO_SMAS" static-field="co.com.quipux.core.model.Constantes.TipoModulo.SMAS" />
+	<util:constant id="TIPO_MODULO_GENERALES" static-field="co.com.quipux.core.model.Constantes.TipoModulo.GENERALES" />
+	<util:constant id="TIPO_MODULO_PERSONA" static-field="co.com.quipux.core.model.Constantes.TipoModulo.PERSONA" />
+</beans:beans>

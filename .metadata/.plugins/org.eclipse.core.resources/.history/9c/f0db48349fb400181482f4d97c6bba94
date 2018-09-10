@@ -1,0 +1,20 @@
+package com.pruebatecnica.ws.test;
+
+
+
+import org.junit.Test;
+
+
+
+public class TestConection {
+
+	
+	@Test
+	public void test() throws Exception {
+	
+		//Conection.conection();
+		
+		
+	}
+
+}

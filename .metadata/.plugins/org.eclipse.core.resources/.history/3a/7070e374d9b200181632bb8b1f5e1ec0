@@ -1,0 +1,5 @@
+package com.pruebatecnica.ws.business.dao.impl;
+
+public class AdministrarProductoDaoJdbc {
+
+}

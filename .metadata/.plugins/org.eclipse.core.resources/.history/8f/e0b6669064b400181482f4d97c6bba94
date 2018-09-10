@@ -1,0 +1,54 @@
+package com.pruebatecnica.ws.business.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.List;
+import java.util.logging.Level;
+
+import com.pruebatecnica.ws.business.commons.Constantes.Utilidades;
+import com.pruebatecnica.ws.business.dao.AdministrarUsuariosDao;
+import com.pruebatecnica.ws.business.dao.conection.Conection;
+import com.pruebatecnica.ws.business.vo.Usuario;
+
+public class AdministrarUsuariosDaoJdbc implements AdministrarUsuariosDao {
+
+	public boolean registrarUsuario(Usuario usuario) {
+		Connection conection = Conection.conection();
+		StringBuilder insertRol = new StringBuilder();
+		insertRol.append("insert into usuarios (nombre_usuario,rol_usuario,password_usuario ) ");
+		insertRol.append("values (?)");
+
+		try {
+			PreparedStatement preparedStatement = conection.prepareStatement(insertRol.toString());
+			preparedStatement.setString(1, nombre);
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			throw new Exception();
+		} finally {
+			try {
+				if (!conection.isClosed()) {
+					conection.close();
+				}
+			} catch (SQLException e) {
+				Utilidades.logger.log(Level.INFO, e.toString());
+			}
+		}
+	}
+
+	public List<Usuario> obtenerUsuarios() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public boolean validarUsuario(Usuario usuario) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
+	
+	
+
+}

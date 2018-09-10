@@ -1,0 +1,17 @@
+package com.pruebatecnica.ws.business.dao.impl;
+
+import com.pruebatecnica.ws.business.dao.AdministrarProductoDao;
+
+public class AdministrarProductoDaoJdbc implements AdministrarProductoDao{
+
+	public boolean insertarCategoria(String nombre, String estado) {
+		
+		
+		
+		
+		
+		
+		return false;
+	}
+
+}

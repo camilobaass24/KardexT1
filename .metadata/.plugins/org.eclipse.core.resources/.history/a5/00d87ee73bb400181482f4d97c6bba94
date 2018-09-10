@@ -1,0 +1,7 @@
+package com.pruebatecnica.ws.business.manager;
+
+public interface GestionarCategoriaManager {
+	
+	public List <Categoria> obtenerCategorias();
+
+}

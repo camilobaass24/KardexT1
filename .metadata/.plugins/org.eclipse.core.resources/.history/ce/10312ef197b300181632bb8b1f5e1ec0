@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns:b="http://www.springframework.org/schema/beans" xmlns="http://www.springframework.org/schema/security" xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.0.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+	<util:set id="listIdsModulos" value-type="java.lang.Integer" set-class="java.util.TreeSet">
+		<b:value>#{TIPO_MODULO_PERSONA}</b:value>
+		<b:value>#{TIPO_MODULO_GENERALES}</b:value>
+		<b:value>#{TIPO_MODULO_SMAS}</b:value>
+	</util:set>
+
+	<util:set id="listIdsRecursos" value-type="java.lang.Integer" set-class="java.util.TreeSet">
+		<b:value>#{ROLE_MODULO_SMAS}</b:value>
+		<b:value>#{ROLE_MODULO_SEGURIDAD}</b:value>
+		<b:value>#{ROLE_MODULO_ADMINISTRACION}</b:value>
+	</util:set>
+
+	<b:bean id="userDetailsService" class="co.com.quipux.smas.security.spring.QxUserDetailService">
+		<b:constructor-arg index="0" ref="listIdsModulos" />
+		<b:constructor-arg index="1" ref="listIdsRecursos" />
+		<b:constructor-arg index="2" value="${server.defaultIdOrganismoTransito}" />
+	</b:bean>
+
+
+	<http entry-point-ref="casEntryPoint" use-expressions="true">
+		<intercept-url pattern="/qits/**" access="isAuthenticated()" />
+		<custom-filter ref="requestSingleLogoutFilter" before="LOGOUT_FILTER" />
+		<custom-filter ref="singleLogoutFilter" before="CAS_FILTER" />
+		<custom-filter ref="casFilter" after="CAS_FILTER" />
+		<logout logout-success-url="${server.logoutSuccessUrl}" />
+	</http>
+
+	<authentication-manager alias="authManager">
+		<authentication-provider ref="casAuthProvider" />
+	</authentication-manager>
+
+
+	<!-- This filter handles a Single Logout Request from the CAS Server -->
+	<b:bean id="singleLogoutFilter" class="org.jasig.cas.client.session.SingleSignOutFilter" />
+	<!-- This filter redirects to the CAS Server to signal Single Logout should be performed -->
+	<b:bean id="requestSingleLogoutFilter" class="org.springframework.security.web.authentication.logout.LogoutFilter" p:filterProcessesUrl="/j_spring_cas_security_logout">
+		<b:constructor-arg value="https://${cas.server.host}/${cas.context.name}/logout" />
+		<b:constructor-arg>
+			<b:bean class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler" />
+		</b:constructor-arg>
+	</b:bean>
+
+	<b:bean id="serviceProperties" class="org.springframework.security.cas.ServiceProperties" p:service="https://${cas.service.host}/qxsmas/j_spring_cas_security_check"
+		p:authenticateAllArtifacts="true" />
+
+	<b:bean id="casEntryPoint" class="org.springframework.security.cas.web.CasAuthenticationEntryPoint" p:serviceProperties-ref="serviceProperties" p:loginUrl="https://${cas.server.host}/${cas.context.name}/login" />
+
+	<b:bean id="casFilter" class="org.springframework.security.cas.web.CasAuthenticationFilter" p:authenticationManager-ref="authManager" p:serviceProperties-ref="serviceProperties"
+		p:proxyGrantingTicketStorage-ref="pgtStorage" p:proxyReceptorUrl="/j_spring_cas_security_proxyreceptor">
+		<b:property name="authenticationDetailsSource">
+			<b:bean class="org.springframework.security.cas.web.authentication.ServiceAuthenticationDetailsSource" />
+		</b:property>
+		<b:property name="authenticationFailureHandler" ref="failureHandler" />
+	</b:bean>
+
+	<b:bean id="failureHandler" class="co.com.quipux.smas.model.security.QxExceptionMappingAuthenticationFailureHandler">
+		<b:property name="defaultFailureUrl" value="https://${cas.server.host}/${cas.context.name}/logout?url=https://${cas.service.host}/qxsmas&amp;login_error=badCredentials" />
+		<b:property name="exceptionMappings" ref="exceptionMappingsMap" />
+	</b:bean>
+
+	<util:map id="exceptionMappingsMap">
+		<b:entry key="org.springframework.security.authentication.AuthenticationCredentialsNotFoundException" value="https://${cas.server.host}/${cas.context.name}/logout?url=https://${cas.service.host}/qxsmas&amp;login_error=badCredentials" />
+		<b:entry key="org.springframework.security.authentication.AuthenticationServiceException" value="https://${cas.server.host}/${cas.context.name}/logout?url=https://${cas.service.host}/qxsmas&amp;login_error=badCredentialsOrBadCaptcha" />
+		<b:entry key="org.springframework.security.authentication.BadCredentialsException" value="https://${cas.server.host}/${cas.context.name}/logout?url=https://${cas.service.host}/qxsmas&amp;login_error=badCredentials" />
+		<b:entry key="org.springframework.security.web.authentication.session.SessionAuthenticationException" value="https://${cas.server.host}/${cas.context.name}/logout?url=https://${cas.service.host}/qxsmas&amp;login_error=badSessionAuthentication" />
+		<b:entry key="org.springframework.security.authentication.CredentialsExpiredException" value="https://${cas.server.host}/${cas.context.name}/logout?url=https://${cas.service.host}/qxsmas&amp;login_error=credentialsExpired" />
+		<b:entry key="org.springframework.security.authentication.LockedException" value="https://${cas.server.host}/${cas.context.name}/logout?url=https://${cas.service.host}/qxsmas&amp;login_error=locked" />
+		<b:entry key="org.springframework.security.authentication.DisabledException" value="https://${cas.server.host}/${cas.context.name}/logout?url=https://${cas.service.host}/qxsmas&amp;login_error=disabled" />
+	</util:map>
+
+
+	<!-- NOTE: In a real application you should not use an in memory implementation. You will also want to ensure to clean up expired tickets by calling ProxyGrantingTicketStorage.cleanup() <b:bean id="pgtStorage" 
+		class="org.jasig.cas.client.proxy.ProxyGrantingTicketStorageImpl"/> -->
+
+	<b:bean id="pgtStorage" class="co.com.quipux.smas.model.security.cas.client.proxy.QxMemcachedBackedProxyGrantingTicketStorageImpl">
+		<b:constructor-arg ref="cacheManager" />
+	</b:bean>
+
+	<b:bean id="casAuthProvider" class="org.springframework.security.cas.authentication.CasAuthenticationProvider" p:serviceProperties-ref="serviceProperties" p:key="qxsmasCasAuthProviderKey">
+		<b:property name="userDetailsService" ref="userDetailsService" />
+		<b:property name="ticketValidator">
+			<b:bean class="org.jasig.cas.client.validation.Cas20ProxyTicketValidator" p:acceptAnyProxy="true" p:proxyCallbackUrl="https://${cas.service.host}/qxsmas/j_spring_cas_security_proxyreceptor"
+				p:proxyGrantingTicketStorage-ref="pgtStorage">
+				<b:constructor-arg value="https://${cas.server.host}/${cas.context.name}" />
+			</b:bean>
+		</b:property>
+	</b:bean>
+
+</b:beans>

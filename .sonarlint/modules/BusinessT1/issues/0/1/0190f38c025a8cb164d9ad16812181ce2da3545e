@@ -1,0 +1,14 @@
+
+wsquid:S2095E"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(šÊòÅH´RBLOCKERZBUG
+ssquid:S00112J"FDefine and throw a dedicated exception instead of using a generic one.(‰ÆáeHºRMAJORZ
+CODE_SMELL
+ssquid:S00112i"FDefine and throw a dedicated exception instead of using a generic one.(‰ÆáeH¸RMAJORZ
+CODE_SMELL
+ssquid:S00112+"FDefine and throw a dedicated exception instead of using a generic one.(‰ÆáeH»RMAJORZ
+CODE_SMELL
+}squid:S2095„"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(àî¸¸úÿÿÿÿH¶RBLOCKERZBUG
+|squid:S2095%"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(àÝæ»þÿÿÿÿH³RBLOCKERZBUG
+|squid:S2095c"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(é„™‰úÿÿÿÿH·RBLOCKERZBUG
+tsquid:S00112‘"FDefine and throw a dedicated exception instead of using a generic one.(‰ÆáeH¹RMAJORZ
+CODE_SMELL
+usquid:S2095…"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(Å¥ÍóÿÿÿÿÿHµRBLOCKERZBUG

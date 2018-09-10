@@ -1,0 +1,27 @@
+package com.pruebatecnica.ws.business.dao;
+
+import java.util.List;
+
+import com.pruebatecnica.ws.business.vo.Categoria;
+
+public interface AdministrarCategoriasDao {
+
+	
+	
+	/**
+	 * Metodo que agrega una nueva categoria
+	 * @param nombre
+	 * @param estado
+	 * @return
+	 */
+	public boolean insertarCategoria(String nombre,String estado);	
+	
+	
+	
+	/**
+	 * Metodo que obtiene el listado de categorias
+	 * @return
+	 */
+	 public List<Categoria> obtenerCategorias();
+	
+}

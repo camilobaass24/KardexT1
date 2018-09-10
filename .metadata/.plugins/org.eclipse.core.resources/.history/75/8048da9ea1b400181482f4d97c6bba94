@@ -1,0 +1,17 @@
+package com.pruebatecnica.ws.business.dao;
+
+import com.pruebatecnica.ws.business.vo.Movimiento;
+
+public interface GestionarMovimientosDao {
+
+	
+	
+	/**
+	 * Metodo que reistra un movimiento sobre el inventario
+	 * @param movimiento
+	 * @return
+	 * @throws Exception
+	 */
+	public boolean registrarMovimiento(Movimiento movimiento) throws Exception;
+
+}

@@ -1,0 +1,47 @@
+package com.pruebatecnica.ws.business.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+
+import com.pruebatecnica.ws.business.commons.Constantes.Utilidades;
+import com.pruebatecnica.ws.business.dao.GestionarProductoDao;
+import com.pruebatecnica.ws.business.dao.conection.Conection;
+
+public class GestionarProductoDaoJdbc implements GestionarProductoDao {
+
+	public boolean registrarProducto(String nombreProducto, int idCategpriaProduto) throws Exception {
+		
+		Connection conection = Conection.conection();
+		StringBuilder registrarProducto = new StringBuilder();
+		registrarProducto.append("insert into productos (nombre_producto,id_categoria) ");
+		registrarProducto.append("values (?,?)");
+
+		try {
+			PreparedStatement preparedStatement = conection.prepareStatement(registrarProducto.toString());
+			preparedStatement.setString(1, nombreProducto);
+			preparedStatement.setInt(2, idCategpriaProduto);
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			throw new Exception();
+		} finally {
+			try {
+				if (!conection.isClosed()) {
+					conection.close();
+				}
+			} catch (SQLException e) {
+				Utilidades.logger.log(Level.INFO, e.toString());
+				throw new Exception();
+			}
+		}
+		
+		
+		
+		
+		return false;
+	}
+
+}

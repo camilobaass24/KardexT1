@@ -1,0 +1,16 @@
+package com.pruebatecnica.ws.business.manager.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.pruebatecnica.ws.business.dao.AdministrarProductoDao;
+import com.pruebatecnica.ws.business.manager.AdministrarProductoManager;
+
+public class AdministrarProductoManagerImpl implements AdministrarProductoManager {
+
+	@Autowired
+	private AdministrarProductoDao administrarProductoDao;
+
+	
+	
+
+}

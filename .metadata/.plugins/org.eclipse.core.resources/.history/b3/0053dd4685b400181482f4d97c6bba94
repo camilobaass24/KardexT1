@@ -1,0 +1,62 @@
+package com.pruebatecnica.ws.business.dao.impl;
+
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.logging.Level;
+
+import com.pruebatecnica.ws.business.commons.Constantes.Utilidades;
+import com.pruebatecnica.ws.business.dao.GestionarMovimientosDao;
+import com.pruebatecnica.ws.business.dao.conection.Conection;
+import com.pruebatecnica.ws.business.vo.Movimiento;
+
+public class GestionarMovimientosDaoJDbc implements GestionarMovimientosDao {
+	
+	Connection conection;
+	
+	
+	public  GestionarMovimientosDaoJDbc() throws Exception
+	{
+		conection= Conection.conection();
+	}
+
+	public boolean registrarMovimiento(Movimiento movimiento) throws Exception {
+		 
+		StringBuilder insertCategoria = new StringBuilder();
+		insertCategoria.append("insert into movimientos ");
+	    insertCategoria.append("(detalle_movimiento, ");
+	    insertCategoria.append("fecha_movimiento, ");
+	    insertCategoria.append("tipo_movimiento, ");
+	    insertCategoria.append("producto_movimiento, ");
+	    insertCategoria.append("precio_unitario, ");
+	    insertCategoria.append("total, ");
+	    insertCategoria.append("cantidad) ");
+		insertCategoria.append("values (?,?,?,?,?,?,?)");
+
+		try {
+			PreparedStatement preparedStatement = conection.prepareStatement(insertCategoria.toString());
+			preparedStatement.setString(1, movimiento.getDetalleMovimiento());
+			preparedStatement.setDate(2, (Date) movimiento.getFechaMovimiento());
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			throw new Exception();
+		} finally {
+			try {
+				if (!conection.isClosed()) {
+					conection.close();
+				}
+			} catch (SQLException e) {
+				Utilidades.logger.log(Level.INFO, e.toString());
+				throw new Exception();
+			}
+		}
+		
+	}
+	
+	
+	
+
+}

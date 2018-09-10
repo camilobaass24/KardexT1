@@ -1,0 +1,14 @@
+package com.pruebatecnica.ws.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.Test;
+
+public class TestConection {
+
+	@Test
+	public void test() {
+		fail("Not yet implemented");
+	}
+
+}

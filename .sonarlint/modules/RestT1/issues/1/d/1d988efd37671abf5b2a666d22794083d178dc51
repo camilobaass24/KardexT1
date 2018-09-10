@@ -1,0 +1,11 @@
+
+™squid:UselessImportCheck	"SRemove this unused import 'org.springframework.beans.factory.annotation.Autowired'.(¡¸Îùÿÿÿÿ8¼”ıÛÛ,Hê
+RMINORZ
+CODE_SMELL
+¥squid:UselessImportCheck"_Remove this unused import 'org.springframework.context.support.ClassPathXmlApplicationContext'.(•ËÛüÿÿÿÿ8¼”ıÛÛ,Hë
+RMINORZ
+CODE_SMELL
+Œsquid:UselessImportCheck
+"KRemove this unused import 'org.springframework.context.ApplicationContext'.(»Ô»¿8¼”ıÛÛ,Hì
+RMINORZ
+CODE_SMELL

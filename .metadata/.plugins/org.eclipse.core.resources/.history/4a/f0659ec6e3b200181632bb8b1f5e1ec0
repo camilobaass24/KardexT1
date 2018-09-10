@@ -1,0 +1,5 @@
+package com.pruebatecnica.ws.business.dao.conection;
+
+public class Conection {
+
+}

@@ -1,0 +1,157 @@
+package com.pruebatecnica.ws.business.dao.impl;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import com.pruebatecnica.ws.business.commons.Constantes.Utilidades;
+import com.pruebatecnica.ws.business.dao.AdministrarCategoriasDao;
+import com.pruebatecnica.ws.business.dao.conection.Conection;
+import com.pruebatecnica.ws.business.vo.Categoria;
+
+public class AdministrarCategoriasDaoJdbc implements AdministrarCategoriasDao {
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.pruebatecnica.ws.business.dao.AdministrarCategoriasDao#
+	 * actualizarCategoria(int)
+	 */
+	public boolean actualizarCategoria(int idCategoria, String nombreCategoria, String activoCategoria)
+			throws Exception {
+
+		Connection conection = Conection.conection();
+		StringBuilder insertCategoria = new StringBuilder();
+		insertCategoria.append("update categorias  set nombre_categoria=?,activo_categoria=? ");
+		insertCategoria.append("where id_categoria=?");
+
+		try {
+			PreparedStatement preparedStatement = conection.prepareStatement(insertCategoria.toString());
+			preparedStatement.setString(1, nombreCategoria);
+			preparedStatement.setString(2, activoCategoria);
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			throw new Exception();
+		} finally {
+			try {
+				if (!conection.isClosed()) {
+					conection.close();
+				}
+			} catch (SQLException e) {
+				Utilidades.logger.log(Level.INFO, e.toString());
+				throw new Exception();
+			}
+		}
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.pruebatecnica.ws.business.dao.AdministrarCategoriasDao#
+	 * borrarCategoria(int)
+	 */
+	public boolean borrarCategoria(int idCategoria) throws Exception {
+		Connection conection = Conection.conection();
+		StringBuilder deleteCategoria = new StringBuilder();
+		deleteCategoria.append("delete from categorias ");
+		deleteCategoria.append("where id_categoria=?");
+
+		try {
+			PreparedStatement preparedStatement = conection.prepareStatement(deleteCategoria.toString());
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			throw new Exception();
+		} finally {
+			try {
+				if (!conection.isClosed()) {
+					conection.close();
+				}
+			} catch (SQLException e) {
+				Utilidades.logger.log(Level.INFO, e.toString());
+				throw new Exception();
+			}
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.pruebatecnica.ws.business.dao.AdministrarCategoriasDao#
+	 * insertarCategoria(java.lang.String, java.lang.String)
+	 */
+	public boolean insertarCategoria(String nombre, String estado) throws Exception {
+		Connection conection = Conection.conection();
+		StringBuilder insertCategoria = new StringBuilder();
+		insertCategoria.append("insert into categorias (nombre_categoria,activo_categoria) ");
+		insertCategoria.append("values (?,?)");
+
+		try {
+			PreparedStatement preparedStatement = conection.prepareStatement(insertCategoria.toString());
+			preparedStatement.setString(1, nombre);
+			preparedStatement.setString(2, estado);
+			preparedStatement.executeUpdate();
+			return true;
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			throw new Exception();
+		} finally {
+			try {
+				if (!conection.isClosed()) {
+					conection.close();
+				}
+			} catch (SQLException e) {
+				Utilidades.logger.log(Level.INFO, e.toString());
+				throw new Exception();
+			}
+		}
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.pruebatecnica.ws.business.dao.AdministrarCategoriasDao#
+	 * obtenerCategorias()
+	 */
+	public List<Categoria> obtenerCategorias() throws Exception {
+
+		Connection conection = Conection.conection();
+		ResultSet resultSet = null;
+		List<Categoria> listaCategorias = new ArrayList<Categoria>();
+		StringBuilder obtenerCategorias = new StringBuilder();
+		obtenerCategorias.append("select  id_categoria, nombre_categoria, activo_categoria from categorias");
+		try {
+			PreparedStatement preparedStatement = conection.prepareStatement(obtenerCategorias.toString());
+			resultSet = preparedStatement.executeQuery();
+
+			while (resultSet.next()) {
+				final Categoria categoria = new Categoria();
+				categoria.setIdCategoria(resultSet.getInt("id_categoria"));
+				categoria.setNombre(resultSet.getString("nombre_categoria"));
+				categoria.setActivo(resultSet.getString("activo_categoria"));
+				listaCategorias.add(categoria);
+			}
+
+			return listaCategorias;
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			throw new Exception();
+		} finally {
+			try {
+				if (!conection.isClosed()) {
+					conection.close();
+				}
+			} catch (SQLException e) {
+				Utilidades.logger.log(Level.INFO, e.toString());
+			}
+		}
+	}
+}

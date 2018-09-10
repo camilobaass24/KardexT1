@@ -1,0 +1,11 @@
+package com.pruebatecnica.ws.business.commons;
+
+public class Constantes {
+
+	
+	public static class Utilidades {
+		public static final String SI = "S";
+		public static final String NO = "N";
+	}
+	
+}

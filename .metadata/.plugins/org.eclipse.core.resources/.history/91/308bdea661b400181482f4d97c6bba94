@@ -1,0 +1,49 @@
+package com.pruebatecnica.ws.rest;
+
+import java.util.List;
+
+import javax.ws.rs.Consumes;
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
+import com.pruebatecnica.ws.business.dao.impl.GestionarCategoriaManagerImpl;
+import com.pruebatecnica.ws.business.manager.GestionarCategoriaManager;
+import com.pruebatecnica.ws.business.vo.Categoria;
+
+
+@Path("/Categorias")
+public class GestionarCategoriaService  {
+	
+	GestionarCategoriaManager gestionarCategoriaManager;
+	
+	
+	public GestionarCategoriaService() {
+		 gestionarCategoriaManager= new GestionarCategoriaManagerImpl();
+	}
+	
+	@GET
+	@Path("/obtenerCategorias")
+	@Produces({MediaType.APPLICATION_JSON})
+	public List<Categoria> obtenerCategorias()
+	
+	{	
+		return gestionarCategoriaManager.obtenerCategorias();	
+	}
+	
+	@Path("/resgistrarCategoria")
+	@Consumes({MediaType.APPLICATION_JSON})
+	@Produces ({MediaType.APPLICATION_JSON})
+	public boolean registrarCategoria(Categoria categoria)
+	{
+		try
+		{
+		gestionarCategoriaManager.insertarCategoria(categoria);
+		return true;
+		}catch (Exception e) {
+			return false;
+		}
+	}
+	
+}

@@ -1,0 +1,14 @@
+package com.pruebatecnica.ws.business.dao;
+
+import java.util.List;
+
+import com.pruebatecnica.ws.business.vo.Producto;
+
+public interface GestionarProductoDao {
+	
+	
+	boolean registrarProducto(Producto producto) throws Exception;
+	
+	List<Producto> obtenerProductos();
+
+}

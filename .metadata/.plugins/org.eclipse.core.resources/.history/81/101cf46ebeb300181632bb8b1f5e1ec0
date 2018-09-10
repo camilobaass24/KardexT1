@@ -1,0 +1,5 @@
+package com.pruebatecnica.ws.rest;
+
+public class GestionarCategoriasService {
+
+}

@@ -1,0 +1,55 @@
+package com.pruebatecnica.ws.test;
+
+import static org.junit.Assert.*;
+
+import java.util.List;
+import java.util.logging.Level;
+import org.junit.Test;
+import com.pruebatecnica.ws.business.commons.Constantes.Utilidades;
+import com.pruebatecnica.ws.business.dao.impl.AdministrarCategoriasDaoJdbc;
+import com.pruebatecnica.ws.business.manager.GestionarCategoriaManager;
+import com.pruebatecnica.ws.business.manager.impl.GestionarCategoriaManagerImpl;
+import com.pruebatecnica.ws.business.vo.Categoria;
+
+public class TestCategoria {
+
+	
+	@Test
+	public void test() {
+		
+		try{
+			GestionarCategoriaManager gestionarCategoriaManager= new GestionarCategoriaManagerImpl();
+			
+			Categoria categoria = new Categoria();
+			categoria.setNombre("Vasos");
+			categoria.setActivo(Utilidades.SI);
+			assertTrue(gestionarCategoriaManager.insertarCategoria(categoria));
+		}
+		catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+		}
+		
+		
+	}
+	
+	
+	@Test
+	public void testObtenerCategorias() {
+		
+		try{
+			AdministrarCategoriasDaoJdbc administrarDao= new AdministrarCategoriasDaoJdbc();
+			
+			List <Categoria> categorias=administrarDao.obtenerCategorias();
+			
+			assertEquals(categorias.size(),0);
+			
+		}
+		catch (Exception e) {
+			// TODO: handle exception
+			Utilidades.logger.log(Level.INFO, e.toString());
+		}
+		
+		
+	}
+
+}

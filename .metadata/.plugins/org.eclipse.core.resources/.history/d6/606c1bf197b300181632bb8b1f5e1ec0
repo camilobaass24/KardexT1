@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+	<aop:config>
+		<aop:advisor pointcut="execution(* co.com.quipux.smas.command..*.*(..))" advice-ref="aopAdvice" />
+		<aop:advisor pointcut="execution(* co.com.quipux.smas.jaxws..*.*(..))" advice-ref="aopAdvice" />
+	</aop:config>
+
+	<bean id="aopAdvice" class="co.com.quipux.smas.command.SecurityAdvice" />
+
+</beans>

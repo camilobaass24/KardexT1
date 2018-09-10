@@ -1,0 +1,10 @@
+package com.pruebatecnica.ws.business.dao;
+
+import com.pruebatecnica.ws.business.vo.Producto;
+
+public interface GestionarProductoDao {
+	
+	
+	Producto registrarProducto(String nombreProducto,int idCategpriaProduto) throws Exception;
+
+}

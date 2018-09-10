@@ -1,0 +1,9 @@
+package com.pruebatecnica.ws.business.dao;
+
+import com.pruebatecnica.ws.business.vo.Movimiento;
+
+public interface GestionarMovimientosDao {
+
+	public boolean registrarMovimiento(Movimiento movimiento);
+
+}
