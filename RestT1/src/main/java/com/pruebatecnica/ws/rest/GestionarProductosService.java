@@ -24,23 +24,6 @@ public class GestionarProductosService {
 		gestionarProductoManager = new GestionarProductoManagerImpl();
 	}
 
-	@POST
-	@Path("/resgistrarProducto")
-	@Consumes({ MediaType.APPLICATION_JSON })
-	@Produces({ MediaType.APPLICATION_JSON })
-	public Producto resgistrarProducto(Producto producto) {
-		try {
-			if (gestionarProductoManager.registrarProducto(producto)) {
-				return producto;
-			}
-		} catch (Exception e) {
-			Utilidades.logger.log(Level.INFO, e.toString());
-			return producto;
-		}
-
-		return null;
-	}
-
 	/**
 	 * Servicio que obtiene todos los productos
 	 * 
@@ -58,6 +41,23 @@ public class GestionarProductosService {
 			Utilidades.logger.log(Level.INFO, e.toString());
 			return productos;
 		}
+	
+	}
 
+	@POST
+	@Path("/resgistrarProducto")
+	@Consumes({ MediaType.APPLICATION_JSON })
+	@Produces({ MediaType.APPLICATION_JSON })
+	public Producto resgistrarProducto(Producto producto) {
+		try {
+			if (gestionarProductoManager.registrarProducto(producto)) {
+				return producto;
+			}
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			return producto;
+		}
+
+		return null;
 	}
 }

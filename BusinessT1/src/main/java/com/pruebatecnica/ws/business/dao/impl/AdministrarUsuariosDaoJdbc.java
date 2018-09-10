@@ -24,6 +24,49 @@ public class AdministrarUsuariosDaoJdbc implements AdministrarUsuariosDao {
 	 * (non-Javadoc)
 	 * 
 	 * @see
+	 * com.pruebatecnica.ws.business.dao.AdministrarUsuariosDao#obtenerUsuarios(
+	 * )
+	 */
+	public List<Usuario> obtenerUsuarios() throws Exception {
+		Connection conection = Conection.conection();
+		ResultSet resultSet = null;
+		List<Usuario> listaUsuarios = new ArrayList<Usuario>();
+		StringBuilder obtenerCategorias = new StringBuilder();
+		PreparedStatement preparedStatement;
+		obtenerCategorias.append("select id_usuario,  nombre_usuario, rol_usuario, password_usuario from usuarios");
+		try {
+			preparedStatement = conection.prepareStatement(obtenerCategorias.toString());
+			resultSet = preparedStatement.executeQuery();
+	
+			while (resultSet.next()) {
+				final Usuario usuario = new Usuario();
+				usuario.setIdUsuario(resultSet.getInt("id_usuario"));
+				usuario.setNombreUsuario(resultSet.getString("nombre_usuario"));
+				usuario.setPassword(resultSet.getString("password_usuario"));
+				usuario.setIdrol(resultSet.getInt("rol_usuario"));
+				listaUsuarios.add(usuario);
+			}
+			resultSet.close();
+			return listaUsuarios;
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			throw new Exception();
+		} finally {
+			try {
+				if (!conection.isClosed()) {
+					conection.close();
+					resultSet.close();
+				}
+			} catch (SQLException e) {
+				Utilidades.logger.log(Level.INFO, e.toString());
+			}
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
 	 * com.pruebatecnica.ws.business.dao.AdministrarUsuariosDao#registrarUsuario
 	 * (com.pruebatecnica.ws.business.vo.Usuario)
 	 */
@@ -46,49 +89,6 @@ public class AdministrarUsuariosDaoJdbc implements AdministrarUsuariosDao {
 			try {
 				if (!conection.isClosed()) {
 					conection.close();
-				}
-			} catch (SQLException e) {
-				Utilidades.logger.log(Level.INFO, e.toString());
-			}
-		}
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see
-	 * com.pruebatecnica.ws.business.dao.AdministrarUsuariosDao#obtenerUsuarios(
-	 * )
-	 */
-	public List<Usuario> obtenerUsuarios() throws Exception {
-		Connection conection = Conection.conection();
-		ResultSet resultSet = null;
-		List<Usuario> listaUsuarios = new ArrayList<Usuario>();
-		StringBuilder obtenerCategorias = new StringBuilder();
-		PreparedStatement preparedStatement;
-		obtenerCategorias.append("select id_usuario,  nombre_usuario, rol_usuario, password_usuario from usuarios");
-		try {
-			preparedStatement = conection.prepareStatement(obtenerCategorias.toString());
-			resultSet = preparedStatement.executeQuery();
-
-			while (resultSet.next()) {
-				final Usuario usuario = new Usuario();
-				usuario.setIdUsuario(resultSet.getInt("id_usuario"));
-				usuario.setNombreUsuario(resultSet.getString("nombre_usuario"));
-				usuario.setPassword(resultSet.getString("password_usuario"));
-				usuario.setIdrol(resultSet.getInt("rol_usuario"));
-				listaUsuarios.add(usuario);
-			}
-			resultSet.close();
-			return listaUsuarios;
-		} catch (Exception e) {
-			Utilidades.logger.log(Level.INFO, e.toString());
-			throw new Exception();
-		} finally {
-			try {
-				if (!conection.isClosed()) {
-					conection.close();
-					resultSet.close();
 				}
 			} catch (SQLException e) {
 				Utilidades.logger.log(Level.INFO, e.toString());

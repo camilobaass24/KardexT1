@@ -4,7 +4,6 @@ INDEX VERSION 1.130+C:\quipux\WEBSERVICE\.metadata\.plugins\org.eclipse.jdt.core
 3513222064.index
 739610601.index
 3677422219.index
-3438697192.index
 3129626329.index
 3754002337.index
 1957907043.index

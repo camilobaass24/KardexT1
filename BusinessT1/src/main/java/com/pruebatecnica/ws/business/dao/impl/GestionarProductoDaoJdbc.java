@@ -21,34 +21,6 @@ public class GestionarProductoDaoJdbc implements GestionarProductoDao {
 		conection = Conection.conection();
 	}
 
-	public boolean registrarProducto(Producto producto) throws Exception {
-
-		conection = Conection.conection();
-		StringBuilder registrarProducto = new StringBuilder();
-		registrarProducto.append("insert into productos (nombre_producto,id_categoria) ");
-		registrarProducto.append("values (?,?)");
-
-		try {
-			PreparedStatement preparedStatement = conection.prepareStatement(registrarProducto.toString());
-			preparedStatement.setString(1, producto.getNombreProducto());
-			preparedStatement.setInt(2, producto.getIdCategoria());
-			preparedStatement.executeUpdate();
-			preparedStatement.close();
-			return true;
-		} catch (Exception e) {
-			Utilidades.logger.log(Level.INFO, e.toString());
-			throw new Exception();
-		} finally {
-			try {
-				if (conection!=null) {
-					conection.close();
-				}
-			} catch (SQLException e) {
-				Utilidades.logger.log(Level.INFO, e.toString());
-			}
-		}
-	}
-
 	public List<Producto> obtenerProductos() throws Exception {
 		ResultSet resultSet = null;
 		List<Producto> listaProductos = new ArrayList();
@@ -75,6 +47,34 @@ public class GestionarProductoDaoJdbc implements GestionarProductoDao {
 					conection.close();
 				}
 				
+			} catch (SQLException e) {
+				Utilidades.logger.log(Level.INFO, e.toString());
+			}
+		}
+	}
+
+	public boolean registrarProducto(Producto producto) throws Exception {
+
+		conection = Conection.conection();
+		StringBuilder registrarProducto = new StringBuilder();
+		registrarProducto.append("insert into productos (nombre_producto,id_categoria) ");
+		registrarProducto.append("values (?,?)");
+
+		try {
+			PreparedStatement preparedStatement = conection.prepareStatement(registrarProducto.toString());
+			preparedStatement.setString(1, producto.getNombreProducto());
+			preparedStatement.setInt(2, producto.getIdCategoria());
+			preparedStatement.executeUpdate();
+			preparedStatement.close();
+			return true;
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			throw new Exception();
+		} finally {
+			try {
+				if (conection!=null) {
+					conection.close();
+				}
 			} catch (SQLException e) {
 				Utilidades.logger.log(Level.INFO, e.toString());
 			}

@@ -24,52 +24,6 @@ public class GestionarMovimientosDaoJDbc implements GestionarMovimientosDao {
 
 	/*
 	 * (non-Javadoc)
-	 * 
-	 * @see com.pruebatecnica.ws.business.dao.GestionarMovimientosDao#
-	 * registrarMovimiento(com.pruebatecnica.ws.business.vo.Movimiento)
-	 */
-	public boolean registrarMovimiento(Movimiento movimiento) throws Exception {
-
-		StringBuilder insertMovmiento = new StringBuilder();
-		insertMovmiento.append("insert into movimientos ");
-		insertMovmiento.append("(detalle_movimiento, ");
-		insertMovmiento.append("fecha_movimiento, ");
-		insertMovmiento.append("tipo_movimiento, ");
-		insertMovmiento.append("producto_movimiento, ");
-		insertMovmiento.append("precio_unitario, ");
-		insertMovmiento.append("total, ");
-		insertMovmiento.append("cantidad) ");
-		insertMovmiento.append("values (?,?,?,?,?,?,?)");
-
-		try {
-			PreparedStatement preparedStatement = conection.prepareStatement(insertMovmiento.toString());
-			preparedStatement.setString(1, movimiento.getDetalleMovimiento());
-			preparedStatement.setDate(2, (Date) movimiento.getFechaMovimiento());
-			preparedStatement.setInt(3, movimiento.getIdTipoMovimiento());
-			preparedStatement.setInt(4, movimiento.getIdProductoMovimiento());
-			preparedStatement.setInt(5, movimiento.getPrecioUnitario());
-			preparedStatement.setInt(6, movimiento.getTotal());
-			preparedStatement.setInt(7, movimiento.getCantidad());
-			preparedStatement.executeUpdate();
-			preparedStatement.close();
-			return true;
-		} catch (Exception e) {
-			Utilidades.logger.log(Level.INFO, e.toString());
-			throw new Exception();
-		} finally {
-			try {
-				if (!conection.isClosed()) {
-					conection.close();
-				}
-			} catch (SQLException e) {
-				Utilidades.logger.log(Level.INFO, e.toString());
-			}
-		}
-
-	}
-
-	/*
-	 * (non-Javadoc)
 	 * @see com.pruebatecnica.ws.business.dao.GestionarMovimientosDao#obtenerMovimientosPorProducto(com.pruebatecnica.ws.business.vo.Movimiento)
 	 */
 	public List<Movimiento> obtenerMovimientosPorProducto(Movimiento movimiento) throws Exception {
@@ -112,6 +66,52 @@ public class GestionarMovimientosDaoJDbc implements GestionarMovimientosDao {
 				Utilidades.logger.log(Level.INFO, e.toString());
 			}
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.pruebatecnica.ws.business.dao.GestionarMovimientosDao#
+	 * registrarMovimiento(com.pruebatecnica.ws.business.vo.Movimiento)
+	 */
+	public boolean registrarMovimiento(Movimiento movimiento) throws Exception {
+
+		StringBuilder insertMovmiento = new StringBuilder();
+		insertMovmiento.append("insert into movimientos ");
+		insertMovmiento.append("(detalle_movimiento, ");
+		insertMovmiento.append("fecha_movimiento, ");
+		insertMovmiento.append("tipo_movimiento, ");
+		insertMovmiento.append("producto_movimiento, ");
+		insertMovmiento.append("precio_unitario, ");
+		insertMovmiento.append("total, ");
+		insertMovmiento.append("cantidad) ");
+		insertMovmiento.append("values (?,?,?,?,?,?,?)");
+
+		try {
+			PreparedStatement preparedStatement = conection.prepareStatement(insertMovmiento.toString());
+			preparedStatement.setString(1, movimiento.getDetalleMovimiento());
+			preparedStatement.setDate(2, (Date) movimiento.getFechaMovimiento());
+			preparedStatement.setInt(3, movimiento.getIdTipoMovimiento());
+			preparedStatement.setInt(4, movimiento.getIdProductoMovimiento());
+			preparedStatement.setInt(5, movimiento.getPrecioUnitario());
+			preparedStatement.setInt(6, movimiento.getTotal());
+			preparedStatement.setInt(7, movimiento.getCantidad());
+			preparedStatement.executeUpdate();
+			preparedStatement.close();
+			return true;
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+			throw new Exception();
+		} finally {
+			try {
+				if (!conection.isClosed()) {
+					conection.close();
+				}
+			} catch (SQLException e) {
+				Utilidades.logger.log(Level.INFO, e.toString());
+			}
+		}
+
 	}
 
 }

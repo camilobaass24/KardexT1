@@ -7,18 +7,18 @@ import com.pruebatecnica.ws.business.vo.Usuario;
 public interface GestionarUsuariosManager {
 	
 	/**
+	 * metodo que obtiene todos los usuarios
+	 * @return
+	 * @throws Exception 
+	 */
+	List<Usuario> obtenerUsuarios() throws Exception;
+	/**
 	 * Metodo que registra un usuario
 	 * @param usuario
 	 * @return
 	 * @throws Exception 
 	 */
 	boolean registrarUsuario(Usuario usuario) throws Exception;
-	/**
-	 * metodo que obtiene todos los usuarios
-	 * @return
-	 * @throws Exception 
-	 */
-	List<Usuario> obtenerUsuarios() throws Exception;
 	/**
 	 * Metodo que valida si es un usuario valido
 	 * @param usuario

@@ -13,6 +13,27 @@ public class GestionarMovmientosManagerImpl implements GestionarMovimientosManag
 
 	private GestionarMovimientosDao gestionarMovimientosDao;
 
+	/**
+	 * Metodo que calcula el valor total del movimiento
+	 * 
+	 * @param movimiento
+	 */
+	private void calcularPrecioTotal(Movimiento movimiento) {
+		int cantidad = 0;
+		int valorUnitario = 0;
+		int total = 0;
+		try {
+			if (movimiento != null) {
+				cantidad = movimiento.getCantidad();
+				valorUnitario = movimiento.getPrecioUnitario();
+				total = cantidad * valorUnitario;
+				movimiento.setTotal(total);
+			}
+		} catch (Exception e) {
+			Utilidades.logger.log(Level.INFO, e.toString());
+		}
+	}
+
 	public GestionarMovmientosManagerImpl() throws Exception {
 
 		gestionarMovimientosDao = new GestionarMovimientosDaoJDbc();
@@ -64,7 +85,7 @@ public class GestionarMovmientosManagerImpl implements GestionarMovimientosManag
 					totalProductosExistentes -= movimientoPorProducto.getCantidad();
 				}
 			}
-			if (totalProductosExistentes > 0) {
+			if (totalProductosExistentes > 0 && totalProductosExistentes >= movimiento.getCantidad()) {
 				return true;
 			}
 
@@ -73,27 +94,6 @@ public class GestionarMovmientosManagerImpl implements GestionarMovimientosManag
 			return false;
 		}
 		return false;
-	}
-
-	/**
-	 * Metodo que calcula el valor total del movimiento
-	 * 
-	 * @param movimiento
-	 */
-	private void calcularPrecioTotal(Movimiento movimiento) {
-		int cantidad = 0;
-		int valorUnitario = 0;
-		int total = 0;
-		try {
-			if (movimiento != null) {
-				cantidad = movimiento.getCantidad();
-				valorUnitario = movimiento.getPrecioUnitario();
-				total = cantidad * valorUnitario;
-				movimiento.setTotal(total);
-			}
-		} catch (Exception e) {
-			Utilidades.logger.log(Level.INFO, e.toString());
-		}
 	}
 
 }

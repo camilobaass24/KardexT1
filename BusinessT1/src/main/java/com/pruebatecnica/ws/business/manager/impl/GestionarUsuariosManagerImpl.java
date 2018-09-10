@@ -22,6 +22,25 @@ public class GestionarUsuariosManagerImpl implements GestionarUsuariosManager {
 	 * (non-Javadoc)
 	 * 
 	 * @see com.pruebatecnica.ws.business.manager.GestionarUsuariosManager#
+	 * obtenerUsuarios()
+	 */
+	public List<Usuario> obtenerUsuarios() throws Exception {
+	
+		List<Usuario> usuarios = new ArrayList<Usuario>();
+		try {
+	
+			usuarios = administrarUsuariosDao.obtenerUsuarios();
+			return usuarios;
+	
+		} catch (Exception e) {
+			return usuarios;
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see com.pruebatecnica.ws.business.manager.GestionarUsuariosManager#
 	 * registrarUsuario(com.pruebatecnica.ws.business.vo.Usuario)
 	 */
 	public boolean registrarUsuario(Usuario usuario) throws Exception {
@@ -35,25 +54,6 @@ public class GestionarUsuariosManagerImpl implements GestionarUsuariosManager {
 		}
 
 		return false;
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see com.pruebatecnica.ws.business.manager.GestionarUsuariosManager#
-	 * obtenerUsuarios()
-	 */
-	public List<Usuario> obtenerUsuarios() throws Exception {
-
-		List<Usuario> usuarios = new ArrayList<Usuario>();
-		try {
-
-			usuarios = administrarUsuariosDao.obtenerUsuarios();
-			return usuarios;
-
-		} catch (Exception e) {
-			return usuarios;
-		}
 	}
 
 	/*

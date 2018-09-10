@@ -23,6 +23,21 @@ public class GestionarProductoManagerImpl implements GestionarProductoManager {
 
 	/*
 	 * (non-Javadoc)
+	 * @see com.pruebatecnica.ws.business.manager.GestionarProductoManager#obtenerProductos()
+	 */
+	public List<Producto> obtenerProductos() {
+		List <Producto>productos= new ArrayList<Producto>();
+		try
+		{
+			productos= gestionarProductoDao.obtenerProductos();
+			return productos;
+		}catch (Exception e) {
+			return productos;
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
 	 * @see com.pruebatecnica.ws.business.manager.GestionarProductoManager#registrarProducto(com.pruebatecnica.ws.business.vo.Producto)
 	 */
 	public boolean registrarProducto(Producto producto) {
@@ -35,21 +50,6 @@ public class GestionarProductoManagerImpl implements GestionarProductoManager {
 			return false;
 		}
 
-	}
-
-	/*
-	 * (non-Javadoc)
-	 * @see com.pruebatecnica.ws.business.manager.GestionarProductoManager#obtenerProductos()
-	 */
-	public List<Producto> obtenerProductos() {
-		List <Producto>productos= new ArrayList<Producto>();
-		try
-		{
-			productos= gestionarProductoDao.obtenerProductos();
-			return productos;
-		}catch (Exception e) {
-			return productos;
-		}
 	}
 
 }
